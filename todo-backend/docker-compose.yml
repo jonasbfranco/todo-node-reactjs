@@ -1,0 +1,35 @@
+services:
+
+  postgres:
+    image: postgres
+    container_name: banco-postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: usuario
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: todos
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8089:8080
+      depends_on:
+        - postgres
+
+  
+    
+volumes:
+  pgdata:
+    #driver: local
+    #driver_opts:
+      #type: none
+  #pgadmin:
+    #driver: local
+    #driver_opts:
+      #type: none
+  
